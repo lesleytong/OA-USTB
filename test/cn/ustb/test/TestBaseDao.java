@@ -15,8 +15,9 @@ public class TestBaseDao {
 	 */
 	@Test
 	public void test6() {
-		//初始化spring
+		//初始化spring，加载配置文件
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		//通过容器获取IBookService接口实现类的调用
 		IBookService bookService = (IBookService) ctx.getBean("bookServiceImpl");
 		
 		List<Book> booklist = bookService.findAll();

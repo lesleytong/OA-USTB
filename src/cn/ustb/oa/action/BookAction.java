@@ -9,6 +9,7 @@ import cn.ustb.oa.domain.Book;
 
 @Controller
 public class BookAction extends BaseAction<Book>{
+	
 	public String execute() throws Exception {
 		System.out.println(model);
 		

@@ -36,6 +36,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	protected T model;
 
+	@Override
 	public T getModel() {
 		return model;
 	}

@@ -2,6 +2,8 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<!-- Struts2配置文件的根元素 -->
 <struts>
     <constant name="struts.devMode" value="true" />
     <!-- 将对象工厂指定为spring -->
@@ -9,9 +11,10 @@
     <!-- struts的Action访问后缀 -->
     <constant name="struts.action.extension" value="do"/>
 
+	<!--Struts2的Action必须放在指定的包空间下定义  -->
     <package name="default" namespace="/" extends="struts-default">
+    	<!-- 定义action，该action对应的类为BookAction类 -->
     	<action name="bookAction" class="bookAction" method="execute">
-    	<result name="success">/1.jsp</result>
     	</action>
     	
     </package>
