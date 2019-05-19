@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<!-- class节点：name属性对应实体类名，table属性对应数据库中的表名 -->
+	<class name="cn.ustb.oa.domain.Department" table="ustb_department">
+		<!-- id节点：对应数据库表中的主键 -->
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<!-- property节点：用于映射普通属性 -->
+		<property name="name" length="32"/>
+		<property name="description" length="128"/>		
+		
+		<!-- 子部门和上级部门的多对一关系 -->
+		<!-- many-to-one定义两个持久化化类的关联，name属性描述上级部门在Department类中的属性的名称，
+		class属性用来指定映射的类，column属性值对应表中的外键列名 -->
+		<many-to-one name="parent" class="cn.ustb.oa.domain.Department" column="parentId" />
+		
+		<!-- 上级部门和子部门的一对多关系 -->
+		<set name="children">
+			<!-- 确定关联的外键列，和多对一关系中的column值一样 -->
+			<key column="parentId" />
+			<!-- 映射到关联类属性 -->
+			<one-to-many class="cn.ustb.oa.domain.Department" />
+		</set>
+		
+		<!-- 部门和用户的一对多关系 -->
+		<set name="users">
+			<key column="departmentId" />
+			<one-to-many class="cn.ustb.oa.domain.User" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

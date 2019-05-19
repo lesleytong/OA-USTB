@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="cn.ustb.oa.domain.Role" table="ustb_role">
+	
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="name" length="32"/>
+		<property name="description" length="128"/>
+		
+		<!-- 岗位和用户的多对多关系 -->
+		<!-- 创建ustb_role表时，生成的外键放在ustb_user_role表里 -->
+		<set name="users" table="ustb_user_role">
+			<!-- key标签的column属性用于描述ustb_role表在中间表中的外键列名称 -->
+			<key column="roleId" />
+			<!-- many-to-many标签的column属性用于描述ustb_user表在中间表中的列名 -->
+			<many-to-many class="cn.ustb.oa.domain.User" column="userId" />
+		</set>
+		
+	</class>
+</hibernate-mapping>
