@@ -31,5 +31,15 @@ public class RoleServiceImpl implements IRoleService{
 	public void delete(Role model) {
 		roleDao.delete(model.getId());
 	}
+
+	@Override
+	public Role getById(Long id) {
+		return roleDao.getById(id);
+	}
+
+	@Override
+	public void update(Role role) {
+		roleDao.update(role);
+	}
 	
 }

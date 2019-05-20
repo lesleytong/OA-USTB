@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Role;
+import cn.ustb.oa.service.impl.RoleServiceImpl;
 
 /**
  * 
@@ -46,4 +47,34 @@ public class RoleAction extends BaseAction<Role>{
 		return "toList";
 	}
 	
+	/**
+	 * 跳转到修改页面
+	 */
+	public String editUI(){
+		//根据id查询岗位，用于回显
+		Role role = roleServie.getById(model.getId());
+		
+		getValueStack().push(role);
+		
+		return "editUI";
+	}
+	
+	/**
+	 * 修改岗位
+	 */
+	public String edit(){
+		//先查询，再修改
+		Role role = roleServie.getById(model.getId());
+		
+		role.setName(model.getName());
+		role.setDescription(model.getDescription());
+		
+		roleServie.update(role);
+		
+		return "toList";
+	}
+	
 }
+
+
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
-	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <!-- Struts2配置文件的根元素 -->
 <struts>
@@ -10,14 +10,19 @@
     <constant name="struts.objectFactory" value="spring"/>
     <!-- struts的Action访问后缀 -->
     <constant name="struts.action.extension" value="do"/>
+    <!-- 指定表单主题 -->
+    <constant name="struts.ui.theme" value="simple" />
+    
 
 	<!--Struts2的Action必须放在指定的包空间下定义  -->
     <package name="default" namespace="/" extends="struts-default">
+    	<global-allowed-methods>regex:.*</global-allowed-methods>
+    	
     	<!-- 定义action，该action对应的类为BookAction类 -->
     	<action name="bookAction" class="bookAction" method="execute">
     	</action>
     	
-    	<!-- 岗位管理 -->
+    	<!-- 岗位管理Action -->
     	<action name="role_*" class="roleAction" method="{1}" >
     		<!-- 显示岗位列表 -->
     		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
@@ -26,6 +31,8 @@
     			<param name="actionName">role_list</param>
     			<param name="namespace">/</param>
     		</result>
+    		<!-- 跳转到修改页面 -->
+    		<result name="editUI">/WEB-INF/jsp/role/edit.jsp</result>
     		
     	</action>
     </package>
