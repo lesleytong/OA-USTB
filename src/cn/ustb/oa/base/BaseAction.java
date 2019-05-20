@@ -6,9 +6,12 @@ import java.lang.reflect.Type;
 import javax.annotation.Resource;
 
 import cn.ustb.oa.service.IBookService;
+import cn.ustb.oa.service.IRoleService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 /**
  * 通用父类Action
@@ -19,6 +22,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	
 	@Resource
 	protected IBookService bookService;
+	@Resource
+	protected IRoleService roleServie;
 	
 	//在构造方法中获得model类型
 	public BaseAction(){
@@ -40,4 +45,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	public T getModel() {
 		return model;
 	}
+	
+	/**
+	 * 获得值栈
+	 */
+	protected ValueStack getValueStack() {
+		return ActionContext.getContext().getValueStack();
+	}
+	
 }
+
+
+

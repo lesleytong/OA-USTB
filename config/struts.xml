@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <!-- Struts2配置文件的根元素 -->
@@ -15,6 +15,10 @@
     <package name="default" namespace="/" extends="struts-default">
     	<!-- 定义action，该action对应的类为BookAction类 -->
     	<action name="bookAction" class="bookAction" method="execute">
+    	</action>
+    	
+    	<action name="role_*" class="roleAction" method="{1}" >
+    		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
     	</action>
     	
     </package>
