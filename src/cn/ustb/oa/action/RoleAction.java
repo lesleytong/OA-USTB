@@ -36,4 +36,14 @@ public class RoleAction extends BaseAction<Role>{
 		return "list";
 	}
 	
+	/**
+	 * 根据id删除岗位
+	 */
+	public String delete() {
+		
+		roleServie.delete(model);
+		
+		return "toList";
+	}
+	
 }

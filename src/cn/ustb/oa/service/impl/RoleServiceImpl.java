@@ -26,5 +26,10 @@ public class RoleServiceImpl implements IRoleService{
 	public List<Role> findAll() {
 		return roleDao.findAll();
 	}
+
+	@Override
+	public void delete(Role model) {
+		roleDao.delete(model.getId());
+	}
 	
 }

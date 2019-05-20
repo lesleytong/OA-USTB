@@ -17,10 +17,17 @@
     	<action name="bookAction" class="bookAction" method="execute">
     	</action>
     	
+    	<!-- 岗位管理 -->
     	<action name="role_*" class="roleAction" method="{1}" >
+    		<!-- 显示岗位列表 -->
     		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
+    		<!-- 删除后，重定向到岗位列表页面 -->
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">role_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		
     	</action>
-    	
     </package>
     
 </struts>

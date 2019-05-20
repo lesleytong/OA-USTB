@@ -7,4 +7,6 @@ import cn.ustb.oa.domain.Role;
 public interface IRoleService {
 
 	public List<Role> findAll();
+
+	public void delete(Role model);
 }
