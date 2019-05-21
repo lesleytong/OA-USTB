@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import javax.annotation.Resource;
 
 import cn.ustb.oa.service.IBookService;
+import cn.ustb.oa.service.IDepartmentService;
 import cn.ustb.oa.service.IRoleService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -24,6 +25,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected IBookService bookService;
 	@Resource
 	protected IRoleService roleServie;
+	@Resource
+	protected IDepartmentService departmentService;
 	
 	//在构造方法中获得model类型
 	public BaseAction(){
