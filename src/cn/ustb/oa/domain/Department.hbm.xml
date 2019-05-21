@@ -20,7 +20,7 @@
 		<many-to-one name="parent" class="cn.ustb.oa.domain.Department" column="parentId" />
 		
 		<!-- 上级部门和子部门的一对多关系 -->
-		<set name="children">
+		<set name="children" cascade="delete">
 			<!-- 确定关联的外键列，和多对一关系中的column值一样 -->
 			<key column="parentId" />
 			<!-- 映射到关联类属性 -->

@@ -39,8 +39,13 @@
     	
     	<!-- 部门管理Action -->
     	<action name="department_*" class="departmentAction" method="{1}">
+    		<!-- 显示部门列表 -->
     		<result name="list">/WEB-INF/jsp/department/list.jsp</result>
-    	
+    		<!-- 删除后，重定向到部门列表 -->
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">department_list</param>
+    			<param name="namespace">/</param>
+    		</result>
     	
     	</action>
     	

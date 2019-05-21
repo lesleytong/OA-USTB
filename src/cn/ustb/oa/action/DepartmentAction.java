@@ -29,4 +29,16 @@ public class DepartmentAction extends BaseAction<Department>{
 		return "list";
 	}
 	
+	/**
+	 * 根据id删除部门
+	 */
+	public String delete() {
+		
+		departmentService.delete(model);
+		
+		return "toList";
+	}
+	
+	
+	
 }

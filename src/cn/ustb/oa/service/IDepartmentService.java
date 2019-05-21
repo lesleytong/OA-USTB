@@ -8,4 +8,6 @@ public interface IDepartmentService {
 
 	public List<Department> findAll();
 
+	public void delete(Department model);
+
 }

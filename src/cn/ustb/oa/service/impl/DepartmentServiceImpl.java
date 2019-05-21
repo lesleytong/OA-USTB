@@ -27,6 +27,11 @@ public class DepartmentServiceImpl implements IDepartmentService{
 	public List<Department> findAll() {
 		return departmentDao.findAll();
 	}
+
+	@Override
+	public void delete(Department model) {
+		departmentDao.delete(model.getId());
+	}
 	
 	
 
