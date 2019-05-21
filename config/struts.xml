@@ -32,9 +32,9 @@
     			<param name="namespace">/</param>
     		</result>
     		<!-- 跳转到修改页面 -->
-    		<result name="editUI">/WEB-INF/jsp/role/edit.jsp</result>
+    		<result name="editUI">/WEB-INF/jsp/role/save.jsp</result>
     		<!-- 跳转到添加页面 -->
-    		<result name="addUI">/WEB-INF/jsp/role/add.jsp</result>
+    		<result name="addUI">/WEB-INF/jsp/role/save.jsp</result>
     		
     	</action>
     </package>
