@@ -13,4 +13,6 @@ public interface IRoleService {
 	public Role getById(Long id);
 
 	public void update(Role role);
+
+	public void save(Role model);
 }

@@ -41,5 +41,11 @@ public class RoleServiceImpl implements IRoleService{
 	public void update(Role role) {
 		roleDao.update(role);
 	}
+
+	@Override
+	public void save(Role model) {
+		roleDao.save(model);
+		
+	}
 	
 }
