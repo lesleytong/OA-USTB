@@ -26,7 +26,7 @@
     	<action name="role_*" class="roleAction" method="{1}" >
     		<!-- 显示岗位列表 -->
     		<result name="list">/WEB-INF/jsp/role/list.jsp</result>
-    		<!-- 删除后，重定向到岗位列表页面 -->
+    		<!-- 重定向到岗位列表页面 -->
     		<result name="toList" type="redirectAction">
     			<param name="actionName">role_list</param>
     			<param name="namespace">/</param>
@@ -41,11 +41,13 @@
     	<action name="department_*" class="departmentAction" method="{1}">
     		<!-- 显示部门列表 -->
     		<result name="list">/WEB-INF/jsp/department/list.jsp</result>
-    		<!-- 删除后，重定向到部门列表 -->
+    		<!-- 重定向到部门列表 -->
     		<result name="toList" type="redirectAction">
     			<param name="actionName">department_list</param>
     			<param name="namespace">/</param>
     		</result>
+    		<!-- 跳转到添加部门页面 -->
+    		<result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
     	
     	</action>
     	

@@ -32,6 +32,17 @@ public class DepartmentServiceImpl implements IDepartmentService{
 	public void delete(Department model) {
 		departmentDao.delete(model.getId());
 	}
+
+	@Override
+	public Department getById(Long parentId) {
+		return departmentDao.getById(parentId);
+	}
+
+	@Override
+	public void save(Department model) {
+		departmentDao.save(model);
+		
+	}
 	
 	
 
