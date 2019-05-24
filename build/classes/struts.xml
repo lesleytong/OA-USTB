@@ -46,9 +46,11 @@
     			<param name="actionName">department_list</param>
     			<param name="namespace">/</param>
     		</result>
-    		<!-- 跳转到添加部门页面 -->
+    		<!-- 跳转到添加部门的页面 -->
     		<result name="addUI">/WEB-INF/jsp/department/save.jsp</result>
-    	
+    		<!-- 条钻到修改部门的页面 -->
+    		<result name="editUI">/WEB-INF/jsp/department/save.jsp</result>
+    		
     	</action>
     	
     </package>

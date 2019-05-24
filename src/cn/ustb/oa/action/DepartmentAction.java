@@ -79,4 +79,57 @@ public class DepartmentAction extends BaseAction<Department>{
 	}
 	
 	
+	/**
+	 * 跳转到修改页面
+	 */
+	public String editUI() {
+		//准备数据：部门列表
+		List<Department> list = departmentService.findAll();
+		
+		//准备数据：根据id查询要修改的部门
+		Department dept = departmentService.getById(model.getId());
+		
+		//压栈
+		getValueStack().set("departmentList", list);
+		getValueStack().push(dept);
+		
+		//如果不是顶级部门，才设置
+		if(dept.getParent() != null) {
+			//设置要修改的部门的parentId，用于回显
+			parentId = dept.getParent().getId();			
+		}
+		
+		return "editUI";
+	}
+	
+	/**
+	 * 修改部门
+	 */
+	public String edit() {
+		//修改的第一步都是先查询，查到要修改的是谁
+		Department dept = departmentService.getById(model.getId());
+		
+		dept.setName(model.getName());
+		dept.setDescription(model.getDescription());
+		
+		if(parentId != null) {
+			Department parent = departmentService.getById(parentId);
+			
+			dept.setParent(parent);
+		}else {
+			dept.setParent(null);
+		}
+		
+		departmentService.update(dept);
+		
+		return "toList";
+	}
+	
 }
+
+
+
+
+
+
+

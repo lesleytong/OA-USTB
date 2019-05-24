@@ -14,4 +14,6 @@ public interface IDepartmentService {
 
 	public void save(Department model);
 
+	public void update(Department dept);
+
 }

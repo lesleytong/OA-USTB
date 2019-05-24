@@ -43,6 +43,12 @@ public class DepartmentServiceImpl implements IDepartmentService{
 		departmentDao.save(model);
 		
 	}
+
+	@Override
+	public void update(Department dept) {
+		departmentDao.update(dept);
+		
+	}
 	
 	
 
