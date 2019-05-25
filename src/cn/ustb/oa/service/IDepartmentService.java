@@ -16,4 +16,8 @@ public interface IDepartmentService {
 
 	public void update(Department dept);
 
+	public List<Department> findTopList();
+
+	public List<Department> findChildren(Long parentId);
+
 }

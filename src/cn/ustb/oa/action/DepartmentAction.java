@@ -32,7 +32,17 @@ public class DepartmentAction extends BaseAction<Department>{
 	 */
 	public String list() {
 		
-		List<Department> list = departmentService.findAll();
+		List<Department> list = null;
+		
+		if(parentId == null) {
+			//查询顶级部门列表
+			list = departmentService.findTopList();
+			
+		}else {
+			//根据顶级部门id查询子部门列表
+			list = departmentService.findChildren(parentId);
+		}
+		
 		
 		getValueStack().set("list", list);	//查出来的是列表，就用set
 		

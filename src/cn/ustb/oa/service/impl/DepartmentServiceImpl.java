@@ -49,6 +49,16 @@ public class DepartmentServiceImpl implements IDepartmentService{
 		departmentDao.update(dept);
 		
 	}
+
+	@Override
+	public List<Department> findTopList() {
+		return departmentDao.findTopList();
+	}
+
+	@Override
+	public List<Department> findChildren(Long parentId) {		
+		return departmentDao.findChildren(parentId);
+	}
 	
 	
 
