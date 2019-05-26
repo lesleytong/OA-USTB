@@ -51,6 +51,13 @@
     <div id="TableTail">
         <div id="TableTail_inside">
             <s:a action="department_addUI?parentId=%{parentId}" namespace="/"><img src="${pageContext.request.contextPath}/style/images/createNew.png" /></s:a>
+            
+            <s:if test="parentId != null">
+            	<s:a action="department_list?parentId=%{dept.parent.id}" namespace="/">
+            		<img src="${pageContext.request.contextPath}/style/blue/images/button/ReturnToPrevLevel.png">
+            	</s:a>     
+            </s:if>
+            
         </div>
     </div>
 </div>
