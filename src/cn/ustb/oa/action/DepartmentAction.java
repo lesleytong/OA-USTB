@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Department;
+import cn.ustb.oa.utils.DepartmentUtils;
 
 /**
  * 部门管理
@@ -67,9 +68,12 @@ public class DepartmentAction extends BaseAction<Department>{
 	 */
 	public String addUI() {
 		//准备部门列表数据，用于select框显示
-		List<Department> list = departmentService.findAll();
+		//List<Department> list = departmentService.findAll();
 		
-		getValueStack().set("departmentList", list);
+		List<Department> topList =  departmentService.findTopList();
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, null); //新建的话都要显示
+		
+		getValueStack().set("departmentList", treeList);
 		
 		return "addUI";
 	}
@@ -96,17 +100,22 @@ public class DepartmentAction extends BaseAction<Department>{
 	 * 跳转到修改页面
 	 */
 	public String editUI() {
-		//准备数据：部门列表
-		List<Department> list = departmentService.findAll();
+		//准备数据：部门列表，用于select框显示
+		//List<Department> list = departmentService.findAll();
 		
 		//准备数据：根据id查询要修改的部门
 		Department dept = departmentService.getById(model.getId());
 		
+		List<Department> topList =  departmentService.findTopList();
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, dept.getId()); //要修改的部门不需要显示其子树
+		
+
+		
 		//压栈
-		getValueStack().set("departmentList", list);
+		getValueStack().set("departmentList", treeList);
 		getValueStack().push(dept);
 		
-		//如果不是顶级部门，才设置
+		//如果不是顶级部门，才设置回显
 		if(dept.getParent() != null) {
 			//设置要修改的部门的parentId，用于回显
 			parentId = dept.getParent().getId();			
