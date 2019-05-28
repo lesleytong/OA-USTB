@@ -64,6 +64,8 @@
     		</result>
     		<!-- 跳转到添加部门的页面 -->
     		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
+    		<!-- 跳转到修改部门的页面 -->
+    		<result name="editUI">/WEB-INF/jsp/user/save.jsp</result>
     		
     	</action>
     	

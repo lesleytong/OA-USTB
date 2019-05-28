@@ -48,7 +48,7 @@
 	                <td>${description}&nbsp;</td>
 	                <td>
 	                    <s:a onclick="return window.confirm('确定删除当前记录吗？')" action="user_delete?id=%{id}" namespace="/">删除</s:a>
-	                    <a href="saveUI.html">修改</a>
+	                    <s:a action="user_editUI?id=%{id}" namespace="/">修改</s:a>
 						<a href="#" onClick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</a>
 	                </td>
 	            </tr>

@@ -12,4 +12,8 @@ public interface IUserService {
 
 	public void save(User model);
 
+	public User getById(Long id);
+
+	public void update(User user);
+
 }

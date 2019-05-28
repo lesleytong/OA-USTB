@@ -2,6 +2,7 @@ package cn.ustb.oa.action;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -100,6 +101,37 @@ public class UserAction extends BaseAction<User>{
 	 */
 	public String editUI() {
 		
+		User user = userService.getById(model.getId());
+		getValueStack().push(user);
+		
+		//准备数据（部门树形列表和岗位列表）
+		List<Department> topList = departmentService.findTopList();
+		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
+		
+		List<Role> roleList = roleServie.findAll();
+		
+		getValueStack().set("treeList", treeList);
+		getValueStack().set("roleList", roleList);
+		
+		//如果该用户有属于的部门
+		if(user.getDepartment() != null) {
+			//查询用户部门Id，用于回显
+			departmentId = user.getDepartment().getId();
+		}
+		
+		Set<Role> roles =user.getRoles();
+		
+		//如果该用户有属于的岗位
+		if(roles != null && roles.size()>0) {
+			//获取当前用户的岗位id，用于回显
+			int size = roles.size();
+			roleIds = new Long[size];
+			int c = 0;
+			for(Role role : roles) {
+				roleIds[c++] = role.getId();
+			}
+		}
+		
 		return "editUI";
 	}
 	
@@ -107,6 +139,37 @@ public class UserAction extends BaseAction<User>{
 	 * 根据id修改用户
 	 */
 	public String edit() {
+		//先查询，再修改
+		User user = userService.getById(model.getId());
+		
+		//普通属性的修改设置
+		user.setLoginName(model.getLoginName());
+		user.setName(model.getName());
+		user.setGender(model.getGender());
+		user.setPhone(model.getPhone());
+		user.setEmail(model.getEmail());
+		user.setDescription(model.getDescription());
+		
+		//关联属性的修改设置
+		//部门
+		if(departmentId != null) {
+			//先查询，再修改
+			Department dept = departmentService.getById(departmentId);
+			user.setDepartment(dept);
+		}else {	//这里必须写else，因为修改的时候如果选择了“请选择”，则上级部门修改为null
+			user.setDepartment(null);
+		}
+		
+		//岗位
+		if(roleIds != null && roleIds.length>0) {
+			//先查询，再修改
+			List<Role> roles = roleServie.getByIds(roleIds);
+			user.setRoles(new HashSet<Role>(roles));	//List变Set，用HashSet
+		}else {	//这里必须写else，因为修改的时候如果没有选中岗位，则岗位修改为null
+			user.setRoles(null);
+		}
+		
+		userService.update(user);
 		
 		return "toList";
 	}
