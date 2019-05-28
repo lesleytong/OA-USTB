@@ -57,6 +57,14 @@
     	<action name="user_*" class="userAction" method="{1}">
     		<!-- 显示用户列表 -->
     		<result name="list">/WEB-INF/jsp/user/list.jsp</result>
+    		<!-- 重定向到用户列表 -->
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">user_list</param>
+    			<param name="namespace">/</param>
+    		</result>
+    		<!-- 跳转到添加部门的页面 -->
+    		<result name="addUI">/WEB-INF/jsp/user/save.jsp</result>
+    		
     	</action>
     	
     </package>

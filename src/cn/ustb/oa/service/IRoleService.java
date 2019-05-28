@@ -15,4 +15,8 @@ public interface IRoleService {
 	public void update(Role role);
 
 	public void save(Role model);
+
+	public List<Role> getByIds(Long[] roleIds);
+
+	
 }

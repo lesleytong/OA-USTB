@@ -8,4 +8,8 @@ public interface IUserService {
 
 	public List<User> findAll();
 
+	public void delete(User model);
+
+	public void save(User model);
+
 }

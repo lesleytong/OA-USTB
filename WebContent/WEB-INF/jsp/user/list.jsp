@@ -47,6 +47,7 @@
 	                &nbsp;</td>
 	                <td>${description}&nbsp;</td>
 	                <td>
+	                    <s:a onclick="return window.confirm('确定删除当前记录吗？')" action="user_delete?id=%{id}" namespace="/">删除</s:a>
 	                    <a href="saveUI.html">修改</a>
 						<a href="#" onClick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</a>
 	                </td>
@@ -58,7 +59,7 @@
     <!-- 其他功能超链接 -->
     <div id="TableTail">
         <div id="TableTail_inside">
-            <a href="saveUI.html"><img src="${pageContext.request.contextPath}/style/images/createNew.png" /></a>
+            <s:a action="user_addUI" namespace="/"><img src="${pageContext.request.contextPath}/style/images/createNew.png" /></s:a>
         </div>
     </div>
 </div>
