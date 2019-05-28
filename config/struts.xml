@@ -53,6 +53,12 @@
     		
     	</action>
     	
+    	<!-- 用户管理Action -->
+    	<action name="user_*" class="userAction" method="{1}">
+    		<!-- 显示用户列表 -->
+    		<result name="list">/WEB-INF/jsp/user/list.jsp</result>
+    	</action>
+    	
     </package>
     
 </struts>
