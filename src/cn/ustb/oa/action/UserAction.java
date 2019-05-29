@@ -1,9 +1,11 @@
 package cn.ustb.oa.action;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -12,6 +14,7 @@ import cn.ustb.oa.domain.Department;
 import cn.ustb.oa.domain.Role;
 import cn.ustb.oa.domain.User;
 import cn.ustb.oa.utils.DepartmentUtils;
+import cn.ustb.oa.utils.MD5Utils;
 
 /**
  * 用户管理
@@ -178,7 +181,41 @@ public class UserAction extends BaseAction<User>{
 	 * 初始化密码
 	 */
 	public String intiPassword() {
+		//先查询
+		User user = userService.getById(model.getId());
+		user.setPassword(MD5Utils.md5("1234"));	//因为登录密码是用MD5加密后和数据库中同样加密的密码作比较
 		
+		userService.update(user);
 		return "toList";
 	}
+	
+	/**
+	 * 查询当前用户名是否存在
+	 */
+	public String findByLoginName() {
+		
+		String loginName = model.getLoginName();
+		int count = userService.findByLoginName(loginName);
+		
+		ServletActionContext.getResponse().setContentType("text/html;character=utf-8");
+		String flag = "1";
+		if(count > 0) {
+			//当前登录名存在，不能使用
+			flag = "0";
+		}
+		try {
+			ServletActionContext.getResponse().getWriter().print(flag);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return NONE;
+	}
 }
+
+
+
+
+
+

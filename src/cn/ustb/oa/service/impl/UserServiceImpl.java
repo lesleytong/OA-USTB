@@ -46,6 +46,11 @@ public class UserServiceImpl implements IUserService {
 	public void update(User user) {
 		userDao.update(user);		
 	}
+
+	@Override
+	public int findByLoginName(String loginName) {
+		return userDao.findByLoginName(loginName);
+	}
 	
 	
 	

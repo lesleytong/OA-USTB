@@ -4,6 +4,34 @@
 <head>
 	<title>岗位设置</title>
 		<%@include file="/WEB-INF/jsp/public/header.jsp" %>
+		<script type="text/javascript">
+			$(function(){
+				//为loginName绑定离焦事件
+				$("#loginName").blur(function(){
+					
+					var value = $(this).val();
+					
+					if(value != null && value.trim().length>0){
+						
+						//发送Ajax，验证当前输入的登录名是否可用
+						var url="pageContext.request.contextPath/user_findByLoginName.do";
+						$.post(url, {'loginName':$(this).val()}, function(data){
+							if(data == '0'){
+								//当前登录名已经存在，不能使用
+								$("#showMsg").html('<font color="red">当前登录名已经存在，不能使用~~~</font>');
+							}else{
+								$("#showMsg").html('<font color="blue">当前登录名可以使用~~~</font>');
+							}							
+						});					
+					}else{
+						$("#showMsg").html('');
+					}
+					
+				});
+			});
+		
+		
+		</script>
 </head>
 <body>
 
@@ -37,9 +65,10 @@
                     </tr>
                     <tr><td>登录名</td>
                         <td>
-                        	<s:textfield name="loginName" cssClass="InputStyle"></s:textfield>
+                        	<s:textfield id="loginName" name="loginName" cssClass="InputStyle"></s:textfield>
                    			 *
 							（登录名要唯一）
+							<div id="showMsg"></div>
 						</td>
                     </tr>
                     <tr><td>姓名</td>
