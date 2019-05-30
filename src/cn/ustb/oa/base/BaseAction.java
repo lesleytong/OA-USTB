@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import cn.ustb.oa.service.IBookService;
 import cn.ustb.oa.service.IDepartmentService;
+import cn.ustb.oa.service.IForumManageService;
 import cn.ustb.oa.service.IRoleService;
 import cn.ustb.oa.service.IUserService;
 
@@ -30,6 +31,8 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected IDepartmentService departmentService;
 	@Resource
 	protected IUserService userService;
+	@Resource
+	protected IForumManageService forumManageService;
 	
 	
 	//在构造方法中获得model类型
