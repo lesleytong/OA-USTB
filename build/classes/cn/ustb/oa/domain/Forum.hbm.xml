@@ -12,5 +12,18 @@
 		<property name="name" length="32"/>
 		<property name="description" />
 		<property name="position" column="position_" />
+		
+		<property name="topicCount"></property>
+		<property name="aritcleCount"></property>
+		
+		<!-- 版块和主题的一对多关系 -->
+		<set name="topices">
+			<key column="forumId"></key>
+			<one-to-many class="cn.ustb.oa.domain.Topic"/>		
+		</set>
+		
+		<!-- 版块和最新主题的多对一关系(其实是一对一)，其实是为了在forum表中生成外键关联topic表的主键 -->
+		<many-to-one name="lastTopic" class="cn.ustb.oa.domain.Topic" column="topicId" />
+		
 	</class>
 </hibernate-mapping>

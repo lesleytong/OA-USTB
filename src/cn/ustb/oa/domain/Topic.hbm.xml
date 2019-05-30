@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 映射文件的dtd信息 -->
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="cn.ustb.oa.domain.Topic" table="ustb_topic">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="title" length="128"/>
+		<property name="content" />
+		<property name="ipAddress" />
+		<property name="postTime"></property>
+		<property name="lastUpdateTime" />
+		<property name="type" />
+		<property name="replyCount"></property>
+		
+		<!-- 主题和用户的多对一关系 -->
+		<many-to-one name="author" class="cn.ustb.oa.domain.User" column="userId" />
+		<!-- 主题和回复的一对多关系 -->
+		<set name="replies">
+			<key column="topicId" />
+			<one-to-many class="cn.ustb.oa.domain.Reply" />	
+		</set>
+		<!-- 主题和最新回复的多对一关系（其实是一对一），为了让外键在topic表里面 -->
+		<many-to-one name="lastReply" class="cn.ustb.oa.domain.Reply" column="replyId" />
+		<!-- 主题和版块的多对一关系 -->
+		<many-to-one name="forum" class="cn.ustb.oa.domain.Forum" column="forumId"></many-to-one>
+		
+	</class>
+</hibernate-mapping>
