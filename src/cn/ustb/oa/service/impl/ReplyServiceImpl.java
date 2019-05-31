@@ -1,5 +1,7 @@
 package cn.ustb.oa.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -42,6 +44,17 @@ public class ReplyServiceImpl implements IReplyService {
 		topic.setReplyCount(topic.getReplyCount() + 1);    //主题的回复数量加1
 		
 	}
+	
+	
+	/**
+	 * 根据主题查询对应的回复列表
+	 */
+	@Override
+	public List<Reply> getReplyByTopic(Topic model) {
+		return replyDao.getReplyByTopic(model);
+	}
+	
+	
 }
 
 

@@ -1,12 +1,14 @@
 package cn.ustb.oa.action;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.Reply;
 import cn.ustb.oa.domain.Topic;
 
 /**
@@ -64,6 +66,10 @@ public class TopicAction extends BaseAction<Topic>{
 		Topic topic = topicService.getById(model.getId());
 		getValueStack().push(topic);
 		
+		//根据主题查询对应的回复列表
+		List<Reply> replyList = replyService.getReplyByTopic(model);
+		getValueStack().set("replyList", replyList);
+		
 		return "show";
 	}
 	
@@ -75,6 +81,8 @@ public class TopicAction extends BaseAction<Topic>{
 	public void setForumId(Long forumId) {
 		this.forumId = forumId;
 	}
+	
+	
 	
 	
 	
