@@ -8,7 +8,9 @@ import javax.annotation.Resource;
 import cn.ustb.oa.service.IBookService;
 import cn.ustb.oa.service.IDepartmentService;
 import cn.ustb.oa.service.IForumManageService;
+import cn.ustb.oa.service.IForumService;
 import cn.ustb.oa.service.IRoleService;
+import cn.ustb.oa.service.ITopicService;
 import cn.ustb.oa.service.IUserService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -33,7 +35,10 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	protected IUserService userService;
 	@Resource
 	protected IForumManageService forumManageService;
-	
+	@Resource 
+	protected IForumService forumService;
+	@Resource 
+	protected ITopicService topicService;
 	
 	//在构造方法中获得model类型
 	public BaseAction(){

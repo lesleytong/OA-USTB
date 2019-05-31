@@ -79,6 +79,14 @@
     		<result name="editUI">/WEB-INF/jsp/forumManage/save.jsp</result>
     	</action>	
     	
+    	<!-- 参与版块操作的Action -->
+    	<action name="forum_*" class="forumAction" method="{1}">
+    		<result name="list">/WEB-INF/jsp/forum/list.jsp</result>
+    		<result name="forumShow">/WEB-INF/jsp/forum/show.jsp</result>
+    		
+    	</action>
+    	
+    	
     	
     </package>
     

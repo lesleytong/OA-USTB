@@ -14,7 +14,7 @@
 		<property name="position" column="position_" />
 		
 		<property name="topicCount"></property>
-		<property name="aritcleCount"></property>
+		<property name="articleCount"></property>
 		
 		<!-- 版块和主题的一对多关系 -->
 		<set name="topices">

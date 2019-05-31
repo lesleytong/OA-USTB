@@ -16,7 +16,7 @@ public class Forum {
 	
 	private Set<Topic> topices = new HashSet<Topic>();	//当前版块中的主题集合
 	private int topicCount;	//当前版块中的主题数量
-	private int aritcleCount;	//当前版块中的文章数量
+	private int articleCount;	//当前版块中的文章数量
 	private Topic lastTopic;	//当前版块中的最新一个主题
 	
 	//别忘了写get/set方法
@@ -54,18 +54,21 @@ public class Forum {
 	public void setTopices(Set<Topic> topices) {
 		this.topices = topices;
 	}
+	public int getArticleCount() {
+		return articleCount;
+	}
+	public void setArticleCount(int articleCount) {
+		this.articleCount = articleCount;
+	}
 	public int getTopicCount() {
 		return topicCount;
 	}
 	public void setTopicCount(int topicCount) {
 		this.topicCount = topicCount;
 	}
-	public int getAritcleCount() {
-		return aritcleCount;
-	}
-	public void setAritcleCount(int aritcleCount) {
-		this.aritcleCount = aritcleCount;
-	}
+
+	
+	
 	public Topic getLastTopic() {
 		return lastTopic;
 	}

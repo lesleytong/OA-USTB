@@ -7,7 +7,7 @@ import java.util.Set;
 public class Topic extends Article {
 	private String title;	//标题
 	private Date lastUpdateTime;	//最后更新时间
-	private int type;	//主题的类型
+	private int type;	//主题的类型：0普通帖、1精华帖、2置顶帖
 	private Forum forum;	//当前主题属于哪个版块
 	private Set<Reply> replies = new HashSet<Reply>();	//当前主题对应的回复集合
 	private int replyCount;	//当前主题对应的回复数量
