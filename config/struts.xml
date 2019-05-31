@@ -94,7 +94,16 @@
     			<param name="namespace">/</param>    	
     		</result>
     		<result name="show">/WEB-INF/jsp/topic/show.jsp</result>
-    		
+    	</action>
+    	
+    	<!-- 回复操作Action -->
+    	<action name="reply_*" class="replyAction" method="{1}">
+    		<!-- 回复提交后重定向到回复列表（单个主题） -->
+    		<result name="toReplyList" type="redirectAction">
+    			<param name="actionName">topic_show?id=${topicId}</param>
+    			<param name="namespace">/</param>    	
+    		</result>    	
+    	
     	</action>
     	
     </package>
