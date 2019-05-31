@@ -24,7 +24,7 @@ public class TopicAction extends BaseAction<Topic>{
 	 * 跳转到发表主题页面
 	 */
 	public String addUI(){
-		//根据版块id查询板块信息，用于页面显示
+		//根据版块id查询版块信息，用于页面显示
 		Forum forum = forumService.getById(forumId);
 		getValueStack().push(forum);
 		return "addUI";
@@ -35,8 +35,10 @@ public class TopicAction extends BaseAction<Topic>{
 	 */
 	public String add(){
 		
-		//根据forumId查询主题属于哪个版块
+		//根据forumId查询是哪个版块
 		Forum forum = forumService.getById(forumId);
+		
+		//设置model主题的各种属性
 		model.setForum(forum);		
 		model.setIpAddress(getIPAddress()); 	//设置客户端的IP地址
 		model.setPostTime(new Date());    //当前主题的发布时间
@@ -50,6 +52,21 @@ public class TopicAction extends BaseAction<Topic>{
 		
 		return "toTopicList";
 	}
+	
+	
+	/**
+	 * 点击单个主题后，进入回复列表
+	 * @return
+	 */
+	public String show() {
+		
+		//根据id查询是哪个主题
+		Topic topic = topicService.getById(model.getId());
+		getValueStack().push(topic);
+		
+		return "show";
+	}
+	
 
 	public Long getForumId() {
 		return forumId;

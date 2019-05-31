@@ -93,6 +93,7 @@
     			<param name="actionName">forum_show?id=${forumId}</param>
     			<param name="namespace">/</param>    	
     		</result>
+    		<result name="show">/WEB-INF/jsp/topic/show.jsp</result>
     		
     	</action>
     	

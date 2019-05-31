@@ -11,4 +11,6 @@ public interface ITopicService {
 
 	public void save(Topic model);
 
+	public Topic getById(Long id);
+
 }

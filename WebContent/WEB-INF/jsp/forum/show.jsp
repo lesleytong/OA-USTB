@@ -61,7 +61,11 @@
 							<td class="ForumTopicPageDataLine" align="center">
 								<img src="${pageContext.request.contextPath}/style/images/topicType_${type}.gif" />
 							</td>
-							<td class="Topic"><a class="Default" href="${pageContext.request.contextPath}/BBS_Topic/topicShow.html">${title}</a></td>
+							<td class="Topic">
+								<s:a cssClass="Default" action="topic_show?id=%{id}">
+								${title}
+								</s:a>
+							</td>
 							<td class="ForumTopicPageDataLine">
 								<ul class="ForumPageTopicUl">
 									<li class="Author">${author.name }</li>

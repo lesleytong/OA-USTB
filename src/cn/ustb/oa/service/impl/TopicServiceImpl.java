@@ -46,6 +46,15 @@ public class TopicServiceImpl implements ITopicService {
 		forum.setLastTopic(model);  //设置版块的最后发表主题为当前主题
 		
 	}
+
+	/**
+	 * 根据id查询是哪个主题
+	 */
+	@Override
+	public Topic getById(Long id) {		
+		return topicDao.getById(id);
+	}
+	
 }
 
 
