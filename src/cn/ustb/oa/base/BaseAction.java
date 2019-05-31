@@ -5,6 +5,9 @@ import java.lang.reflect.Type;
 
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
+
+import cn.ustb.oa.domain.User;
 import cn.ustb.oa.service.IBookService;
 import cn.ustb.oa.service.IDepartmentService;
 import cn.ustb.oa.service.IForumManageService;
@@ -66,6 +69,20 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	 */
 	protected ValueStack getValueStack() {
 		return ActionContext.getContext().getValueStack();
+	}
+	
+	/**
+	 * 获得当前用户登录的IP地址
+	 */
+	protected String getIPAddress() {
+		return ServletActionContext.getRequest().getRemoteAddr();
+	}
+	
+	/**
+	 * 获得当前登录用户
+	 */
+	protected User getLoginUser() {
+		return (User) ServletActionContext.getRequest().getSession().getAttribute("loginUser");
 	}
 	
 }

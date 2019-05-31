@@ -27,8 +27,10 @@
 			<s:a action="forum_list" namespace="/">论坛</s:a>
 			<font class="MenuPoint"> &gt; </font>
 			${name }
-			<span style="margin-left:30px;"><a href="${pageContext.request.contextPath}/BBS_Topic/saveUI.html">
-				<img align="absmiddle" src="${pageContext.request.contextPath}/style/blue/images/button/publishNewTopic.png"/></a>
+			<span style="margin-left:30px;">
+				<s:a action="topic_addUI?forumId=%{id}" namespace="/">
+					<img align="absmiddle" src="${pageContext.request.contextPath}/style/blue/images/button/publishNewTopic.png"/>
+				</s:a>
 			</span>
 		</div>
 		

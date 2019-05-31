@@ -86,8 +86,15 @@
     		
     	</action>
     	
-    	
+    	<!-- 主题操作Action -->
+    	<action name="topic_*" class="topicAction" method="{1}">
+    		<result name="addUI">/WEB-INF/jsp/topic/add.jsp</result>
+    		<result name="toTopicList" type="redirectAction">
+    			<param name="actionName">forum_show?id=${forumId}</param>
+    			<param name="namespace">/</param>    	
+    		</result>
+    		
+    	</action>
     	
     </package>
-    
 </struts>

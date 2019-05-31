@@ -9,4 +9,6 @@ public interface ITopicService {
 
 	public List<Topic> findTopicByForum(Forum model);
 
+	public void save(Topic model);
+
 }
