@@ -61,6 +61,10 @@
 </html>
 <script>
 		CKEDITOR.replace( 'content', {
-			uiColor: '#14B8C4'
+			uiColor: '#14B8C4',
+			toolbar: [
+				[ 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+				[ 'FontSize', 'TextColor', 'BGColor' ]
+			]
 		});
 </script>
