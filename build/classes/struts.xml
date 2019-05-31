@@ -103,6 +103,8 @@
     			<param name="actionName">topic_show?id=${topicId}</param>
     			<param name="namespace">/</param>    	
     		</result>    	
+    		<!--  -->
+    		<result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
     	
     	</action>
     	

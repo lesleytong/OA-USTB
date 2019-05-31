@@ -22,7 +22,7 @@ public class ReplyAction extends BaseAction<Reply>{
 
 	
 	/**
-	 * 发表回复
+	 * 快速发表回复
 	 * @return
 	 */
 	public String add() {
@@ -38,8 +38,24 @@ public class ReplyAction extends BaseAction<Reply>{
 		
 		replyService.save(model);
 		
-		return "toReplyList";
+		return "toReplyList";	//重定向到topic/show.jsp页面（struts里面配置）
 	}
+	
+	
+	/**
+	 * 点回复列表的回复链接，跳转到回复页面
+	 * @return
+	 */
+	public String addUI() {
+		
+		//根据主题id查出是哪个主题
+		Topic topic = topicService.getById(topicId);
+		//压栈
+		getValueStack().push(topic);
+		
+		return "addUI";
+	}
+	
 	
 	public Long getTopicId() {
 		return topicId;
