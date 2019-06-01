@@ -13,6 +13,7 @@ import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.Reply;
 import cn.ustb.oa.domain.Topic;
 import cn.ustb.oa.service.IReplyService;
+import cn.ustb.oa.utils.HQLHelper;
 
 /**
  * 回复操作
@@ -58,9 +59,15 @@ public class ReplyServiceImpl implements IReplyService {
 	/**
 	 * 分页查询
 	 */
-	@Override
 	public PageBean getPageBean(int currentPage, Topic model) {
 		return replyDao.getPageBean(currentPage, model);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return replyDao.getPageBean(hh, currentPage);
 	}
 	
 	

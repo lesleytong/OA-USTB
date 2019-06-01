@@ -2,6 +2,9 @@ package cn.ustb.oa.base;
 
 import java.util.List;
 
+import cn.ustb.oa.domain.PageBean;
+import cn.ustb.oa.utils.HQLHelper;
+
 /**
  * 通用Dao接口
  * @author Lenovo
@@ -38,6 +41,11 @@ public interface IBaseDao<T> {
 	 * 查询所有
 	 */
 	public List<T> findAll();
+	
+	/*
+	 * 公共分页方法
+	 */
+	public PageBean getPageBean(HQLHelper hh, int currentPage);
 	
 	
 }
