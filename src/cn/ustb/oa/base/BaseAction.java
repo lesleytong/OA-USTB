@@ -32,7 +32,7 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	@Resource
 	protected IBookService bookService;
 	@Resource
-	protected IRoleService roleServie;
+	protected IRoleService roleService;
 	@Resource
 	protected IDepartmentService departmentService;
 	@Resource

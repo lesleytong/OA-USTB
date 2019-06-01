@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustb.oa.dao.IReplyDao;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.Reply;
 import cn.ustb.oa.domain.Topic;
 import cn.ustb.oa.service.IReplyService;
@@ -52,6 +53,14 @@ public class ReplyServiceImpl implements IReplyService {
 	@Override
 	public List<Reply> getReplyByTopic(Topic model) {
 		return replyDao.getReplyByTopic(model);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	@Override
+	public PageBean getPageBean(int currentPage, Topic model) {
+		return replyDao.getPageBean(currentPage, model);
 	}
 	
 	

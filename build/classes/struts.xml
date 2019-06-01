@@ -103,7 +103,7 @@
     			<param name="actionName">topic_show?id=${topicId}</param>
     			<param name="namespace">/</param>    	
     		</result>    	
-    		<!--  -->
+    		<!-- 跳转到发表回复页面 -->
     		<result name="addUI">/WEB-INF/jsp/reply/add.jsp</result>
     	
     	</action>

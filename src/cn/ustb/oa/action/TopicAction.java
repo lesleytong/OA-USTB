@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.Reply;
 import cn.ustb.oa.domain.Topic;
 
@@ -21,6 +22,8 @@ import cn.ustb.oa.domain.Topic;
 public class TopicAction extends BaseAction<Topic>{
 	
 	private Long forumId;//属性驱动，版块id；别忘了get/set方法
+	
+	private int currentPage = 1;//属性驱动，当前页码，别忘了get/set方法；给默认值为1
 	
 	/**
 	 * 跳转到发表主题页面
@@ -66,9 +69,12 @@ public class TopicAction extends BaseAction<Topic>{
 		Topic topic = topicService.getById(model.getId());
 		getValueStack().push(topic);
 		
-		//根据主题查询对应的回复列表
-		List<Reply> replyList = replyService.getReplyByTopic(model);
-		getValueStack().set("replyList", replyList);
+//		//根据主题查询对应的回复列表
+//		List<Reply> replyList = replyService.getReplyByTopic(model);
+//		getValueStack().set("replyList", replyList);
+		
+		PageBean pb = replyService.getPageBean(currentPage, model);
+		getValueStack().push(pb);
 		
 		return "show";
 	}
@@ -80,6 +86,14 @@ public class TopicAction extends BaseAction<Topic>{
 
 	public void setForumId(Long forumId) {
 		this.forumId = forumId;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 	
 	

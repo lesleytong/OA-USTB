@@ -26,7 +26,7 @@ public class RoleAction extends BaseAction<Role>{
 	 */
 	public String list() {
 		//查询
-		List<Role> list = roleServie.findAll();
+		List<Role> list = roleService.findAll();
 		
 		//得到值栈
 		ValueStack vs = getValueStack();
@@ -42,7 +42,7 @@ public class RoleAction extends BaseAction<Role>{
 	 */
 	public String delete() {
 		
-		roleServie.delete(model);
+		roleService.delete(model);
 		
 		return "toList";
 	}
@@ -52,7 +52,7 @@ public class RoleAction extends BaseAction<Role>{
 	 */
 	public String editUI(){
 		//根据id查询岗位，用于回显
-		Role role = roleServie.getById(model.getId());
+		Role role = roleService.getById(model.getId());
 		
 		getValueStack().push(role);
 		
@@ -64,12 +64,12 @@ public class RoleAction extends BaseAction<Role>{
 	 */
 	public String edit(){
 		//先查询，再修改
-		Role role = roleServie.getById(model.getId());
+		Role role = roleService.getById(model.getId());
 		
 		role.setName(model.getName());
 		role.setDescription(model.getDescription());
 		
-		roleServie.update(role);
+		roleService.update(role);
 		
 		return "toList";
 	}
@@ -85,10 +85,12 @@ public class RoleAction extends BaseAction<Role>{
 	 * 添加岗位
 	 */
 	public String add() {
-		roleServie.save(model);
+		roleService.save(model);
 		
 		return "toList";
 	}
+	
+	
 	
 }
 

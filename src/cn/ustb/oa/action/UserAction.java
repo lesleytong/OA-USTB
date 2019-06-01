@@ -71,7 +71,7 @@ public class UserAction extends BaseAction<User>{
 		List<Department> topList = departmentService.findTopList();
 		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
 		
-		List<Role> roleList = roleServie.findAll();
+		List<Role> roleList = roleService.findAll();
 		
 		getValueStack().set("treeList", treeList);
 		getValueStack().set("roleList", roleList);
@@ -89,7 +89,7 @@ public class UserAction extends BaseAction<User>{
 			model.setDepartment(dept);	//用户关联部门
 		}
 		if(roleIds != null && roleIds.length>0) {
-			List<Role> roleList = roleServie.getByIds(roleIds);
+			List<Role> roleList = roleService.getByIds(roleIds);
 			model.setRoles(new HashSet<Role>(roleList));	//List变Set，用HashSet
 			
 		}
@@ -111,7 +111,7 @@ public class UserAction extends BaseAction<User>{
 		List<Department> topList = departmentService.findTopList();
 		List<Department> treeList = DepartmentUtils.getTreeList(topList, null);
 		
-		List<Role> roleList = roleServie.findAll();
+		List<Role> roleList = roleService.findAll();
 		
 		getValueStack().set("treeList", treeList);
 		getValueStack().set("roleList", roleList);
@@ -166,7 +166,7 @@ public class UserAction extends BaseAction<User>{
 		//岗位
 		if(roleIds != null && roleIds.length>0) {
 			//先查询，再修改
-			List<Role> roles = roleServie.getByIds(roleIds);
+			List<Role> roles = roleService.getByIds(roleIds);
 			user.setRoles(new HashSet<Role>(roles));	//List变Set，用HashSet
 		}else {	//这里必须写else，因为修改的时候如果没有选中岗位，则岗位修改为null
 			user.setRoles(null);
