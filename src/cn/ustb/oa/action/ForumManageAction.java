@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.PageBean;
+import cn.ustb.oa.utils.HQLHelper;
 
 /**
  * 论坛管理
@@ -21,8 +23,15 @@ public class ForumManageAction extends BaseAction<Forum>{
 	 * 查询板块列表
 	 */
 	public String list(){
-		List<Forum> list = forumManageService.findAll();
-		getValueStack().set("list", list);
+//		List<Forum> list = forumManageService.findAll();
+//		getValueStack().set("list", list);
+		
+		//分页显示
+		HQLHelper hh = new HQLHelper(Forum.class);	//FORM子句
+		hh.addOrderBy("o.position", true);          //没有where条件，有order by条件，按照position
+		
+		PageBean pb = forumManageService.getPageBean(hh, currentPage);
+		getValueStack().push(pb);
 		return "list";
 	}
 	

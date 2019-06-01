@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustb.oa.dao.IForumManageDao;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.service.IForumManageService;
+import cn.ustb.oa.utils.HQLHelper;
 /**
  * 版块管理
  * @author Lenovo
@@ -55,6 +57,14 @@ public class ForumManageServiceImpl implements IForumManageService {
 	@Override
 	public void moveDown(Long id) {
 		forumManageDao.moveDown(id);		
+	}
+
+	/**
+	 * 分页查询
+	 */
+	@Override
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return forumManageDao.getPageBean(hh, currentPage);
 	}
 	
 	
