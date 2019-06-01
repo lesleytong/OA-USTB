@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustb.oa.dao.ITopicDao;
 import cn.ustb.oa.domain.Forum;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.Topic;
 import cn.ustb.oa.service.ITopicService;
+import cn.ustb.oa.utils.HQLHelper;
 /**
  * 主题操作
  * @author Lenovo
@@ -53,6 +55,15 @@ public class TopicServiceImpl implements ITopicService {
 	@Override
 	public Topic getById(Long id) {		
 		return topicDao.getById(id);
+	}
+
+	
+	/**
+	 * 主题列表的分页查询
+	 */
+	@Override
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return topicDao.getPageBean(hh, currentPage);
 	}
 	
 }
