@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 
 import cn.ustb.oa.base.BaseAction;
 import cn.ustb.oa.domain.Department;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.Role;
 import cn.ustb.oa.domain.User;
 import cn.ustb.oa.utils.DepartmentUtils;
+import cn.ustb.oa.utils.HQLHelper;
 import cn.ustb.oa.utils.MD5Utils;
 
 /**
@@ -50,8 +52,15 @@ public class UserAction extends BaseAction<User>{
 	 */
 	public String list() {
 		
-		List<User> list = userService.findAll();
-		getValueStack().set("userList", list);
+//		List<User> list = userService.findAll();
+//		getValueStack().set("userList", list);
+		
+		HQLHelper hh = new HQLHelper(User.class);	//FROM子句
+		//没有where条件也没有order by条件
+		
+		PageBean pb = userService.getPageBean(hh, currentPage);
+		getValueStack().push(pb);
+		
 		return "list";
 	}
 	

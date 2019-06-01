@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustb.oa.dao.IUserDao;
+import cn.ustb.oa.domain.PageBean;
 import cn.ustb.oa.domain.User;
 import cn.ustb.oa.service.IUserService;
+import cn.ustb.oa.utils.HQLHelper;
 /**
  * 用户管理
  * @author Lenovo
@@ -50,6 +52,14 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public int findByLoginName(String loginName) {
 		return userDao.findByLoginName(loginName);
+	}
+
+	/**
+	 * 分页查询
+	 */
+	@Override
+	public PageBean getPageBean(HQLHelper hh, int currentPage) {
+		return userDao.getPageBean(hh, currentPage);
 	}
 	
 	
