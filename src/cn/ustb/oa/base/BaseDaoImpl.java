@@ -1,8 +1,11 @@
 package cn.ustb.oa.base;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Properties;
 
 import javax.annotation.Resource;
 
@@ -72,7 +75,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 	@Override
 	public PageBean getPageBean(HQLHelper hh, int currentPage) {
 
-		int pageSize = 5;	//每页显示5条记录
+		int pageSize = getPageSize();	//每页显示5条记录
 		int firstPageResult = (currentPage - 1) * pageSize;	//当前页码从哪条记录开始显示
 		
 		String listHQL = hh.getListHQL();
@@ -100,6 +103,38 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		Long recordCount = (Long) query.uniqueResult();	//总记录数
 		
 		return new PageBean(currentPage, pageSize, recordCount.intValue(), recordList);
+	}
+
+	/**
+	 * 读取配置文件，获取pageSize
+	 * @return
+	 */
+	private int getPageSize() {
+		
+		int pageSize = 10;
+		
+		Properties pro = new Properties();
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("page.properties");
+		
+		try {
+			pro.load(in);
+			String str = (String) pro.get("pageSize");	//读取出来的是字符串类型
+			pageSize = Integer.parseInt(str);
+			
+		} catch (IOException e) {
+			pageSize = 10;
+			e.printStackTrace();
+		}finally {
+			try {
+				if(in != null) {
+					in.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return pageSize;
 	}
 	
 	
